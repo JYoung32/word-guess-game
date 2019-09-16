@@ -5,15 +5,32 @@
 //adjust scoreboard for wins and losses
 
 var pokedex = ["pikachu", "bulbasaur", "charmander", "squirtle"]
+var pokemon = "";
+var chosenPokemon = [];
 var wins = 0;
 var losses = 0;
+var blanks = 0;
+var correctBlanks = [];
+var wrongGuess = [];
 var numberGuess = 10;
 var userChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-//generate random choice from array
-var pokemon = pokedex[Math.floor(Math.random()*pokedex.length)];
-//split the choice into individual letters, store length and generate loop to push an underscore up
+function gameStart(){
+pokemon = pokedex[Math.floor(Math.random() * pokedex.length)];
+chosenPokemon = pokemon.split("");
+blanks = chosenPokemon.length;
+for (i = 0; i < blanks; i++){
+    correctBlanks.push("_");
+}
+document.getElementById("pokemon").innerHTML = " " + correctBlanks.join(" ");
 
-document.getElementById("pokemon").innerHTML = pokemon;
-
-//make function  to see if selected letter matches and push if true
+console.log(pokemon);
+console.log(chosenPokemon);
+console.log(blanks);
+console.log(correctBlanks);
+}
+//make if/else function  to see if selected letter matches and push if true
+function checkLetters(){
+    
+}
+gameStart();
