@@ -51,4 +51,23 @@ function checkLetters(letter){
     }
     console.log(correctBlanks);
 }
+
+function reset(){
+    numberGuess = 10;
+    wrongGuess = [];
+    correctBlanks = [];
+    gameStart();
+}
+//reset function
+//win/lose conditions
+//keyup function
+
+document.onkeyup =function(event){
+    var userGuess = event.key;
+    if (userChoices.includes(userChoices)){
+
+    }
+    
+}
+console.log(event.key);
 gameStart();
