@@ -52,16 +52,29 @@ function checkLetters(letter){
     console.log(correctBlanks);
 }
 
+//reset function
 function reset(){
     numberGuess = 10;
     wrongGuess = [];
     correctBlanks = [];
     gameStart();
 }
-//reset function
-//win/lose conditions
-//keyup function
 
+//win/lose conditions
+function complete(){
+    if (chosenPokemon.toString() == correctBlanks.toString()){
+        wins++;
+        reset();
+        document.getElementById("wins").innerHTML = "Wins: " + wins = "";
+    }
+    else (numberGuess === 0){
+        losses++;
+        reset();
+        document.getElementById("losses").innerHTML = "Losses: " + losses + "";
+    }
+}
+
+//keyup function
 document.onkeyup =function(event){
     var userGuess = event.key;
     if (userChoices.includes(userChoices)){
