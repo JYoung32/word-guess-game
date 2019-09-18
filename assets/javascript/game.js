@@ -65,22 +65,28 @@ function complete(){
     if (chosenPokemon.toString() == correctBlanks.toString()){
         wins++;
         reset();
-        document.getElementById("wins").innerHTML = "Wins: " + wins = "";
+        document.getElementById("wins").innerHTML = "Wins: " + wins + "";
     }
-    else (numberGuess === 0){
+    else if (numberGuess === 0){
         losses++;
         reset();
         document.getElementById("losses").innerHTML = "Losses: " + losses + "";
     }
+    document.getElementById("pokemon").innerHTML = " " + correctBlanks.join(" ");
+    document.getElementById("remaining").innerHTML = "Number of Guesses left: " + numberGuess + "";
 }
+
+gameStart();
 
 //keyup function
 document.onkeyup =function(event){
     var userGuess = event.key;
-    if (userChoices.includes(userChoices)){
-
+    if (userChoices.includes(userGuess)){
+        checkLetters(userGuess);
+        complete();
+        console.log(userGuess);
+        document.getElementById("guessed").innerHTML = "Letters Already Guessed: " + wrongGuess.join(" ");
     }
     
 }
-console.log(event.key);
-gameStart();
+
