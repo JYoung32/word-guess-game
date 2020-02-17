@@ -4,34 +4,29 @@
 //wrong letter guess, get put into word bank and number of guesses decreases
 //adjust scoreboard for wins and losses
 
-var pokedex = ["pikachu", "bulbasaur", "charmander", "squirtle"]
-var pokemon = "";
-var chosenPokemon = [];
-var wins = 0;
-var losses = 0;
-var blanks = 0;
-var correctBlanks = [];
-var wrongGuess = [];
-var numberGuess = 10;
-var userChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const pokedex = ["pikachu", "bulbasaur", "charmander", "squirtle"];
+const userChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+let [pokemon, chosenPokemon, wins, losses, blanks, correctBlanks, wrongGuess, numberGuess] = ["", [], 0, 0, 0, [], [], 10];
 
-function gameStart(){
-pokemon = pokedex[Math.floor(Math.random() * pokedex.length)];
-chosenPokemon = pokemon.split("");
-blanks = chosenPokemon.length;
-for (i = 0; i < blanks; i++){
-    correctBlanks.push("_");
-}
-document.getElementById("pokemon").innerHTML = " " + correctBlanks.join(" ");
-//checking values
-console.log(pokemon);
-console.log(chosenPokemon);
-console.log(blanks);
-console.log(correctBlanks);
+gameStart = () => {
+    pokemon = pokedex[Math.floor(Math.random() * pokedex.length)];
+    chosenPokemon = pokemon.split("");
+    blanks = chosenPokemon.length;
+    
+    for (i = 0; i < blanks; i++){
+        correctBlanks.push("_");
+    }
+
+    document.getElementById("pokemon").innerHTML = ` ${correctBlanks.join(" ")}`;
+    //checking values
+    console.log(pokemon);
+    console.log(chosenPokemon);
+    console.log(blanks);
+    console.log(correctBlanks);
 }
 
 //make if/else function  to see if selected letter matches and push if true
-function checkLetters(letter){
+checkLetters = (letter) => {
     var letterInWord = false;
     for (var i = 0; i < blanks; i++){
         if (pokemon[i] == letter){
@@ -50,43 +45,41 @@ function checkLetters(letter){
         numberGuess--;
     }
     console.log(correctBlanks);
-}
+};
 
 //reset function
-function reset(){
+reset = () => {
     numberGuess = 10;
     wrongGuess = [];
     correctBlanks = [];
     gameStart();
-}
+};
 
 //win/lose conditions
-function complete(){
+complete = () => {
     if (chosenPokemon.toString() == correctBlanks.toString()){
         wins++;
         reset();
-        document.getElementById("wins").innerHTML = "Wins: " + wins + "";
-    }
-    else if (numberGuess === 0){
+        document.getElementById("wins").innerHTML = `Wins: ${wins}`;
+    } else if (numberGuess === 0) {
         losses++;
         reset();
-        document.getElementById("losses").innerHTML = "Losses: " + losses + "";
-    }
-    document.getElementById("pokemon").innerHTML = " " + correctBlanks.join(" ");
-    document.getElementById("remaining").innerHTML = "Number of Guesses left: " + numberGuess + "";
-}
+        document.getElementById("losses").innerHTML = `Losses: ${losses}`;
+    };
+
+    document.getElementById("pokemon").innerHTML = ` ${correctBlanks.join(" ")}`;
+    document.getElementById("remaining").innerHTML = `Number of Guesses left: ${numberGuess}`;
+};
 
 gameStart();
 
 //keyup function
-document.onkeyup =function(event){
+document.onkeyup = (event) => {
     var userGuess = event.key;
     if (userChoices.includes(userGuess)){
         checkLetters(userGuess);
         complete();
-        console.log(userGuess);
-        document.getElementById("guessed").innerHTML = "Letters Already Guessed: " + wrongGuess.join(" ");
-    }
-    
-}
+        document.getElementById("guessed").innerHTML = `Letters Already Guessed: ${wrongGuess.join(" ")}`;
+    };    
+};
 
