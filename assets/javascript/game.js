@@ -15,36 +15,31 @@ gameStart = () => {
     
     for (i = 0; i < blanks; i++){
         correctBlanks.push("_");
-    }
+    };
 
     document.getElementById("pokemon").innerHTML = ` ${correctBlanks.join(" ")}`;
-    //checking values
-    console.log(pokemon);
-    console.log(chosenPokemon);
-    console.log(blanks);
-    console.log(correctBlanks);
-}
+};
 
 //make if/else function  to see if selected letter matches and push if true
 checkLetters = (letter) => {
-    var letterInWord = false;
-    for (var i = 0; i < blanks; i++){
+    let letterInWord = false;
+    
+    for (let i = 0; i < blanks; i++){
         if (pokemon[i] == letter){
             letterInWord = true;
         }
-    }
+    };
+
     if (letterInWord){
-        for (var i = 0; i < blanks; i++){
+        for (let i = 0; i < blanks; i++){
             if (pokemon[i] == letter){
                 correctBlanks[i] = letter;
             }
         }
-    }
-    else {
+    } else {
         wrongGuess.push(letter);
         numberGuess--;
-    }
-    console.log(correctBlanks);
+    };
 };
 
 //reset function
